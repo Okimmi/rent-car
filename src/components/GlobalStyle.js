@@ -1,12 +1,12 @@
-import { createGlobalStyle } from "styled-components";
-import "modern-normalize";
+import { createGlobalStyle } from 'styled-components';
+import 'modern-normalize';
 
 export const theme = {
   colors: {
-    primeryWhite: "#FFF",
-    primeryBlack: "#121417",
-    lightBlue: "#3470FF",
-    darkBlue: "#0B44CD",
+    primeryWhite: '#FFF',
+    primeryBlack: '#121417',
+    lightBlue: '#3470FF',
+    darkBlue: '#0B44CD',
   },
 };
 
@@ -18,6 +18,7 @@ export const GlobalStyle = createGlobalStyle`
 }
 
 body {
+  position: relative;
   font-family: 'Manrope', sans-serif;
   font-size: 14px;
   line-height: 1.5;
