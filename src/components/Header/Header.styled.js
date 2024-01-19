@@ -8,6 +8,8 @@ export const StyledHeader = styled.header`
   z-index: 100;
   background-color: rgba(11, 68, 205, 0.5);
   color: ${({ theme: { colors } }) => colors.primeryWhite};
+  backdrop-filter: blur(3px);
+  -webkit-backdrop-filter: blur(3px);
 `;
 
 export const Container = styled.div`
@@ -28,6 +30,7 @@ export const Container = styled.div`
   }
 
   @media screen and (min-width: 1440px) {
+    padding: 8px 128px;
     width: 1440px;
   }
 `;

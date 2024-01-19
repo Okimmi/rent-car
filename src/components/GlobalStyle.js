@@ -33,6 +33,8 @@ h5,
 h6,
 p {
   margin: 0;
+  font-size: inherit;
+  font-weight: inherit;
 }
 
 ul,

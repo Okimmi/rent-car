@@ -9,7 +9,7 @@ export const Overlay = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: rgba(0, 0, 0, 0.8);
+  background: rgba(18, 20, 23, 0.5);
   z-index: 1200;
 `;
 
@@ -19,46 +19,33 @@ export const ModalStyled = styled.div`
   max-height: 100vh;
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
-  padding: 24px 12px 24px 12px;
-  border-radius: 10px;
+  padding: 40px 12px 24px 12px;
+  border-radius: 24px;
   background-color: ${({ theme: { colors } }) => colors.primeryWhite};
 
   @media screen and (min-width: 768px) {
-    padding: 32px 24px 32px 24px;
+    padding: 40px;
   }
 `;
 
 export const CloseButton = styled.button`
+  position: absolute;
+  top: 8px;
+  right: 8px;
   background: none;
   border: none;
-  cursor: pointer;
-  outline: none;
   display: flex;
   align-items: center;
   justify-content: center;
-  stroke: ${({ theme: { colors } }) => colors.primeryBlue};
-  transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  transition: transform var(--animation-time) var(--animation-cubic);
+  cursor: pointer;
 
   &:hover {
-    transform: scale(1.2);
-    stroke: ${({ theme: { colors } }) => colors.secondary5};
+    transform: scale(1.1);
   }
-`;
-
-export const Title = styled.h2`
-  font-size: 26px;
-  font-weight: 500;
-  line-height: 1.23;
-  max-width: 200px;
 
   @media screen and (min-width: 768px) {
-    min-width: 384px;
+    top: 16px;
+    right: 16px;
   }
-`;
-
-export const Container = styled.div`
-  margin-bottom: 24px;
-  display: flex;
-  justify-content: space-between;
-  align-items: start;
 `;

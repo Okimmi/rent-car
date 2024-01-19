@@ -20,7 +20,7 @@ const advertsSlice = createSlice({
   },
   extraReducers: builder => {
     builder.addCase(fetchAll.fulfilled, (state, action) => {
-      state.items = action.payload;
+      state.items = [...state.items, ...action.payload];
       state.isLoading = false;
       state.error = null;
     });

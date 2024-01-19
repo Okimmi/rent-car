@@ -1,33 +1,46 @@
-import { TextAccent } from 'components/Global/Global.styled';
 import {
   AdditionalText,
+  Img,
+  MainText,
+  TextAccent,
+} from 'components/Global/Global.styled';
+import {
   AdditionalTextBlock,
   Btn,
   Card,
-  Img,
   ImgContainer,
   LikeBtn,
-  MainText,
 } from './AdvertCard.styled';
 import { ReactComponent as FavoritesIconNormal } from '../../icons/normal.svg';
+import { useState } from 'react';
+import { AdvertModal } from 'components/AdvertModal/AdvertModal';
 
-export const AdvertCard = ({
-  item: {
+export const AdvertCard = ({ item }) => {
+  const {
+    id,
     make,
     year,
     model,
     type,
     img,
     rentalPrice,
-    mileage,
     address,
     rentalCompany,
     functionalities,
-  },
-}) => {
+  } = item;
   const parseAdress = address.split(',');
   const city = parseAdress[1];
   const country = parseAdress[2];
+
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const openModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
 
   return (
     <Card>
@@ -38,10 +51,10 @@ export const AdvertCard = ({
         <Img src={img} alt="" />
       </ImgContainer>
       <MainText>
-        <p>
+        <h2>
           {make}
           <TextAccent> {model}</TextAccent>, {year}
-        </p>
+        </h2>
         <p>{rentalPrice}</p>
       </MainText>
       <AdditionalTextBlock>
@@ -53,10 +66,16 @@ export const AdvertCard = ({
       <AdditionalTextBlock>
         <AdditionalText>{type}</AdditionalText>
         <AdditionalText>{model}</AdditionalText>
-        <AdditionalText>{mileage}</AdditionalText>
+        <AdditionalText>{id}</AdditionalText>
         <AdditionalText>{functionalities[0]}</AdditionalText>
       </AdditionalTextBlock>
-      <Btn>Learn more</Btn>
+      <Btn onClick={openModal}>Learn more</Btn>
+      {isModalOpen && (
+        <AdvertModal
+          close={closeModal}
+          data={{ item, city, country }}
+        ></AdvertModal>
+      )}
     </Card>
   );
 };

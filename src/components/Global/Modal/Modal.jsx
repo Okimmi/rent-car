@@ -1,30 +1,24 @@
-import { useEffect } from "react";
-import { createPortal } from "react-dom";
-import { disableBodyScroll, enableBodyScroll } from "body-scroll-lock";
+import { useEffect } from 'react';
+import { createPortal } from 'react-dom';
+import { disableBodyScroll, enableBodyScroll } from 'body-scroll-lock';
 
-import {
-  CloseButton,
-  Container,
-  ModalStyled,
-  Overlay,
-  Title,
-} from "./Modal.styled";
-import { ReactComponent as Close } from "../../../icons/x.svg";
+import { CloseButton, ModalStyled, Overlay } from './Modal.styled';
+import { ReactComponent as Close } from '../../../icons/x.svg';
 
-const modalRoot = document.querySelector("#modal-root");
+const modalRoot = document.querySelector('#modal-root');
 
-const Modal = ({ close, children, title }) => {
+const Modal = ({ close, children }) => {
   useEffect(() => {
     const closeModalEsc = ({ code }) => {
-      if (code === "Escape") {
+      if (code === 'Escape') {
         close();
       }
     };
-    document.addEventListener("keydown", closeModalEsc);
+    document.addEventListener('keydown', closeModalEsc);
     disableBodyScroll(document.body);
 
     return () => {
-      document.removeEventListener("keydown", closeModalEsc);
+      document.removeEventListener('keydown', closeModalEsc);
       enableBodyScroll(document.body);
     };
   }, [close]);
@@ -38,12 +32,9 @@ const Modal = ({ close, children, title }) => {
   return createPortal(
     <Overlay onClick={closeModal}>
       <ModalStyled>
-        <Container>
-          <Title>{title}</Title>
-          <CloseButton onClick={close}>
-            <Close />
-          </CloseButton>
-        </Container>
+        <CloseButton onClick={close}>
+          <Close />
+        </CloseButton>
         {children}
       </ModalStyled>
     </Overlay>,
