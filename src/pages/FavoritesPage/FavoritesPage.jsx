@@ -1,3 +1,10 @@
+import { FavoritesCatalog } from 'components/FavoritesCatalog/FavoritesCatalog';
+import { Page } from 'components/Global/Global.styled';
+
 export const FavoritesPage = () => {
-  return <p>FavoritesPage </p>;
+  return (
+    <Page>
+      <FavoritesCatalog />
+    </Page>
+  );
 };

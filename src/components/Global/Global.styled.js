@@ -58,3 +58,18 @@ export const AdditionalText = styled.span`
     background-color: rgba(18, 20, 23, 0.1);
   }
 `;
+
+export const Grid = styled.div`
+  display: grid;
+  justify-content: center;
+  grid-template-columns: repeat(1, 274px);
+  gap: 50px 29px;
+
+  @media screen and (min-width: 768px) {
+    grid-template-columns: repeat(2, 353px);
+  }
+
+  @media screen and (min-width: 1440px) {
+    grid-template-columns: repeat(4, 274px);
+  }
+`;
