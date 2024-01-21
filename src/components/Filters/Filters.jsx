@@ -8,16 +8,11 @@ import {
   FromToContainer,
   Label,
   MilageWrapper,
-  Select,
   Selector,
   SelectorItem,
   SelectorWrapper,
 } from './Filters.styled';
-import {
-  selectFilters,
-  selectMaxPrice,
-  selectMinPrice,
-} from '../../redux/selectors';
+import { selectFilters } from '../../redux/selectors';
 import { useSearchParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { setFilters } from '../../redux/filtersSlice';
@@ -106,7 +101,13 @@ export const Filters = () => {
       <label>
         <Label>Car brand</Label>
         <SelectorWrapper>
-          <Selector onClick={() => setIsBrandDropdownOpen(true)} width="224px">
+          <Selector
+            onClick={() => {
+              console.log('open');
+              setIsBrandDropdownOpen(true);
+            }}
+            width="224px"
+          >
             {brandSelect || 'Enter the text'}
           </Selector>
           <CustomArrow $isOpen={isBrandDropdownOpen} />
@@ -122,6 +123,7 @@ export const Filters = () => {
                     onClick={handleSelectBrand}
                     key={item}
                     value={item}
+                    $isActive={brandSelect === item}
                   >
                     {item}
                   </SelectorItem>
@@ -150,6 +152,7 @@ export const Filters = () => {
                     onClick={handleSelectPrice}
                     value={price}
                     key={price}
+                    $isActive={priceSelect === price}
                   >
                     {price}
                   </SelectorItem>
