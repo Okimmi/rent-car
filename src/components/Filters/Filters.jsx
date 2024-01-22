@@ -6,8 +6,10 @@ import {
   FormItemWrapper,
   FromTo,
   FromToContainer,
+  InvalidErrorMessage,
   Label,
   MilageWrapper,
+  MileageContainer,
   Selector,
   SelectorItem,
   SelectorWrapper,
@@ -50,6 +52,7 @@ export const Filters = () => {
   const [priceSelect, setPriceSelect] = useState(brand);
   const [mileageFromSelect, setMileageFromSelect] = useState(mileageFrom);
   const [mileageToSelect, setMileageToSelect] = useState(mileageTo);
+  const [isValid, setIsValid] = useState(true);
 
   const [isBrandDropdownOpen, setIsBrandDropdownOpen] = useState(false);
   const [isPriceDropdownOpen, setIsPriceDropdownOpen] = useState(false);
@@ -79,6 +82,18 @@ export const Filters = () => {
       })
     );
   }, [dispatch, searchParams]);
+
+  useEffect(() => {
+    if (
+      mileageFromSelect &&
+      mileageToSelect &&
+      parseInt(mileageFromSelect) > parseInt(mileageToSelect)
+    ) {
+      setIsValid(false);
+    } else {
+      setIsValid(true);
+    }
+  }, [mileageFromSelect, mileageToSelect]);
 
   const handleSubmit = e => {
     e.preventDefault();
@@ -168,7 +183,7 @@ export const Filters = () => {
           )}
         </SelectorWrapper>
       </label>
-      <label>
+      <MileageContainer>
         <Label>Сar mileage / km</Label>
         <FromToContainer>
           <FormItemWrapper>
@@ -193,8 +208,14 @@ export const Filters = () => {
             />
           </FormItemWrapper>
         </FromToContainer>
-      </label>
-      <Btn>Search</Btn>
+        {!isValid && (
+          <InvalidErrorMessage>
+            Please enter a valid range: 'To' value should be equal to or greater
+            than 'From'.
+          </InvalidErrorMessage>
+        )}
+      </MileageContainer>
+      <Btn disabled={!isValid}>Search</Btn>
     </Form>
   );
 };
